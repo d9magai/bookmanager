@@ -1,0 +1,10 @@
+[package]
+name = "bookmanager"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = { version = "0.8.4", features = ["macros"] }
+hyper = { version = "1.6.0", features = ["full"] }
+serde_json = "1.0.140"
+tokio = { version = "1.45.0", features = ["full"] }
