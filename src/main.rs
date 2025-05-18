@@ -1,23 +1,17 @@
-use axum::{Router, response::Json, routing::get, serve};
-use serde_json::{Value, json};
+use anyhow::Result;
+use axum::http::StatusCode;
+use axum::{Router, routing::get};
 use tokio::net::TcpListener;
 
-// plain text response
-async fn plain_text() -> &'static str {
-    "foo"
-}
-
-// JSON response
-async fn json() -> Json<Value> {
-    Json(json!({ "data": 42 }))
+async fn health_check() -> StatusCode {
+    StatusCode::OK
 }
 
 #[tokio::main]
-async fn main() {
-    let app = Router::new()
-        .route("/plain_text", get(plain_text))
-        .route("/json", get(json));
+async fn main() -> Result<()> {
+    let app = Router::new().route("/health", get(health_check));
 
-    let listener = TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    serve(listener, app).await.unwrap();
+    let listener = TcpListener::bind((std::net::Ipv4Addr::LOCALHOST, 3000)).await?;
+
+    Ok(axum::serve(listener, app).await?)
 }
