@@ -1,33 +1,29 @@
 {
-    // IntelliSense を使用して利用可能な属性を学べます。
-    // 既存の属性の説明をホバーして表示します。
-    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    {
-        "type": "lldb",
-        "request": "launch",
-        "name": "Cargo launch",
-        "cargo": {
-            "args": [
-                "build",
-                "--lib"
-            ]
-        },
-        "args": []
-    },
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'bookmanager'",
+            "name": "Cargo launch",
+            "cargo": {
+                "args": [
+                    "build"
+                ]
+            },
+            "args": []
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'app'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=bookmanager",
+                    "--bin=app",
                     "--package=bookmanager"
                 ],
                 "filter": {
-                    "name": "bookmanager",
+                    "name": "app",
                     "kind": "bin"
                 }
             },
@@ -37,16 +33,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'bookmanager'",
+            "name": "Debug unit tests in executable 'app'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=bookmanager",
+                    "--bin=app",
                     "--package=bookmanager"
                 ],
                 "filter": {
-                    "name": "bookmanager",
+                    "name": "app",
                     "kind": "bin"
                 }
             },
