@@ -188,11 +188,15 @@ dependencies = [
 name = "bookmanager"
 version = "0.1.0"
 dependencies = [
+ "adapter",
  "anyhow",
+ "api",
  "axum",
  "dotenv",
  "hyper",
+ "registry",
  "serde_json",
+ "shared",
  "sqlx",
  "tokio",
 ]
