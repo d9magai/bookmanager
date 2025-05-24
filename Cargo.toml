@@ -21,6 +21,7 @@ adapter = { path = "adapter" }
 api = { path = "api" }
 registry = { path = "registry" }
 shared = { path = "shared" }
+kernel = { path = "kernel" }
 anyhow = "1.0.98"
 axum = { version = "0.8.4", features = ["macros"] }
 dotenv = "0.15.0"
@@ -44,3 +45,4 @@ serde_json.workspace = true
 sqlx.workspace = true
 tokio.workspace = true
 async-trait = "0.1.88"
+derive-new = "0.7.0"
