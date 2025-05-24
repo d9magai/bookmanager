@@ -212,7 +212,6 @@ dependencies = [
  "api",
  "async-trait",
  "axum",
- "derive-new",
  "dotenv",
  "hyper",
  "registry",
