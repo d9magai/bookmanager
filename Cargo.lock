@@ -1250,6 +1250,10 @@ dependencies = [
 [[package]]
 name = "registry"
 version = "0.1.0"
+dependencies = [
+ "adapter",
+ "kernel",
+]
 
 [[package]]
 name = "rsa"
