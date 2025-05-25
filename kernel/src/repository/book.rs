@@ -1,6 +1,7 @@
 use async_trait::async_trait;
 use uuid::Uuid;
 
+use crate::entity::books;
 use crate::model::book::event::CreateBook;
 
 #[async_trait]
@@ -12,5 +13,5 @@ pub trait BookRepository: Send + Sync {
     async fn find_all(&self) -> Result<Vec<String>, String>;
 
     /// 指定したIDの本を返します。
-    async fn find_by_id(&self, id: Uuid) -> Result<Option<book::Model>, String>;
+    async fn find_by_id(&self, id: Uuid) -> Result<Option<books::Model>, String>;
 }
