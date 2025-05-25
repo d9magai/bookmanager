@@ -9,31 +9,31 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(Book::Table)
+                    .table(Books::Table)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(Book::Id)
+                        ColumnDef::new(Books::Id)
                             .uuid()
                             .not_null()
                             .primary_key()
                             .default(SimpleExpr::Custom("gen_random_uuid()".into())),
                     )
-                    .col(ColumnDef::new(Book::Title).string_len(255).not_null())
-                    .col(ColumnDef::new(Book::Author).string_len(255).not_null())
-                    .col(ColumnDef::new(Book::Isbn).string_len(255).not_null())
+                    .col(ColumnDef::new(Books::Title).string_len(255).not_null())
+                    .col(ColumnDef::new(Books::Author).string_len(255).not_null())
+                    .col(ColumnDef::new(Books::Isbn).string_len(255).not_null())
                     .col(
-                        ColumnDef::new(Book::Description)
+                        ColumnDef::new(Books::Description)
                             .string_len(1024)
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(Book::CreatedAt)
+                        ColumnDef::new(Books::CreatedAt)
                             .timestamp_with_time_zone()
                             .not_null()
                             .default(SimpleExpr::Custom("CURRENT_TIMESTAMP(3)".into())),
                     )
                     .col(
-                        ColumnDef::new(Book::UpdatedAt)
+                        ColumnDef::new(Books::UpdatedAt)
                             .timestamp_with_time_zone()
                             .not_null()
                             .default(SimpleExpr::Custom("CURRENT_TIMESTAMP(3)".into())),
@@ -45,13 +45,13 @@ impl MigrationTrait for Migration {
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-            .drop_table(Table::drop().table(Book::Table).to_owned())
+            .drop_table(Table::drop().table(Books::Table).to_owned())
             .await
     }
 }
 
 #[derive(DeriveIden)]
-enum Book {
+enum Books {
     Table,
     Id,
     Title,
