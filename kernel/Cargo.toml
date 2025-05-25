@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 async-trait.workspace = true
+uuid.workspace = true
+sea-orm.workspace = true
