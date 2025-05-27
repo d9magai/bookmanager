@@ -7,3 +7,4 @@ edition = "2024"
 async-trait.workspace = true
 uuid.workspace = true
 sea-orm.workspace = true
+sqlx.workspace = true

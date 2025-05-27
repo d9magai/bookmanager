@@ -3,6 +3,7 @@ use sqlx::{
     postgres::{PgConnectOptions, PgPoolOptions},
 };
 use std::str::FromStr;
+pub mod model;
 
 #[derive(Clone)]
 pub struct ConnectionPool(PgPool);
