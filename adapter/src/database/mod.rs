@@ -1,27 +1,21 @@
-use sqlx::{
-    PgPool,
-    postgres::{PgConnectOptions, PgPoolOptions},
-};
-use std::str::FromStr;
+use sea_orm::Database;
 pub mod model;
+use sea_orm::DatabaseConnection;
 
 #[derive(Clone)]
-pub struct ConnectionPool(PgPool);
+pub struct ConnectionPool(DatabaseConnection);
 
 impl ConnectionPool {
-    pub fn inner_ref(&self) -> &PgPool {
+    pub fn inner_ref(&self) -> &DatabaseConnection {
         &self.0
     }
 }
 
-pub fn connect_database_with() -> ConnectionPool {
+pub async fn connect_database_with() -> ConnectionPool {
     dotenv::dotenv().ok();
-    let database_url: String =
-        std::env::var("DATABASE_URL").expect("DATABASE_URL must be set in the environment");
-    let connect_options =
-        PgConnectOptions::from_str(&database_url).expect("Invalid DATABASE_URL format");
-    let pool = PgPoolOptions::new()
-        .max_connections(5)
-        .connect_lazy_with(connect_options);
-    ConnectionPool(pool)
+    let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let db = Database::connect(&database_url)
+        .await
+        .expect("Failed to connect to database");
+    ConnectionPool(db)
 }

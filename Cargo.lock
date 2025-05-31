@@ -11,6 +11,7 @@ dependencies = [
  "derive-new",
  "dotenv",
  "kernel",
+ "sea-orm",
  "sqlx",
  "uuid",
 ]

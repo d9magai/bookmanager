@@ -12,7 +12,7 @@ async fn main() -> Result<()> {
 }
 
 async fn bootstrap() -> Result<()> {
-    let pool = connect_database_with();
+    let pool = connect_database_with().await;
     let registry = AppRegistry::new(pool);
     let app = Router::new()
         .merge(build_health_check_routes())
