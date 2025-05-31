@@ -6,6 +6,7 @@ use kernel::entity::books::{self, Model};
 use kernel::model::book::event::CreateBook;
 use kernel::repository::book::BookRepository;
 use sea_orm::ActiveModelTrait;
+use sea_orm::{EntityTrait, QueryOrder};
 
 #[derive(new)]
 pub struct BookRepositoryImpl {
@@ -29,12 +30,17 @@ impl BookRepository for BookRepositoryImpl {
     }
 
     async fn find_all(&self) -> Result<Vec<Model>, sea_orm::DbErr> {
-        // TODO: Implement the logic to retrieve all books from the database
-        unimplemented!()
+        let books = books::Entity::find()
+            .order_by_asc(books::Column::CreatedAt)
+            .all(self.db.inner_ref())
+            .await?;
+        Ok(books)
     }
 
     async fn find_by_id(&self, id: Uuid) -> Result<Option<Model>, sea_orm::DbErr> {
-        // TODO: Implement the logic to find a book by its ID
-        unimplemented!()
+        let book = books::Entity::find_by_id(id)
+            .one(self.db.inner_ref())
+            .await?;
+        Ok(book)
     }
 }
