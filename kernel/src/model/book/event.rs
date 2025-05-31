@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct CreateBook {
     pub title: String,
     pub author: String,

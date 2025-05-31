@@ -9,6 +9,9 @@ impl ConnectionPool {
     pub fn inner_ref(&self) -> &DatabaseConnection {
         &self.0
     }
+    pub fn new(db: DatabaseConnection) -> Self {
+        Self(db)
+    }
 }
 
 pub async fn connect_database_with() -> ConnectionPool {
