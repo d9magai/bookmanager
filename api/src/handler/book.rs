@@ -1,4 +1,4 @@
-use axum::extract::{Json, State};
+use axum::extract::{Json, Path, State};
 use axum::{http::StatusCode, response::IntoResponse};
 use registry::AppRegistry;
 use sea_orm::entity::prelude::*;
@@ -59,7 +59,7 @@ pub async fn show_book(
         .book_repository()
         .find_by_id(id)
         .await
+        .map_err(anyhow::Error::new)?
         .map(|book| Json(BookResponse::from(book)))
-        .map_err(anyhow::Error::new)
-        .map_err(AppError::from)
+        .ok_or_else(|| anyhow::anyhow!("Book not found").into())
 }

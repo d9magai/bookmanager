@@ -35,22 +35,14 @@ pub struct BookResponse {
     pub isbn: String,
     pub description: String,
 }
-impl From<books::ActiveModel> for BookResponse {
-    fn from(book: books::ActiveModel) -> Self {
-        let books::ActiveModel {
-            id,
-            title,
-            author,
-            isbn,
-            description,
-            ..
-        } = book;
+impl From<books::Model> for BookResponse {
+    fn from(book: books::Model) -> Self {
         Self {
-            id: id.unwrap().to_string(),
-            title: title.unwrap(),
-            author: author.unwrap(),
-            isbn: isbn.unwrap(),
-            description: description.unwrap(),
+            id: book.id.to_string(),
+            title: book.title,
+            author: book.author,
+            isbn: book.isbn,
+            description: book.description,
         }
     }
 }
