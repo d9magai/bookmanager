@@ -13,3 +13,4 @@ serde.workspace = true
 anyhow.workspace = true
 uuid.workspace = true
 thiserror.workspace = true
+sea_orm.workspace = true
