@@ -1,5 +1,5 @@
 use adapter::database::connect_database_with;
-use anyhow::{Error, Result};
+use anyhow::Result;
 use api::route::{book::build_book_routers, health::build_health_check_routes};
 use axum::Router;
 use registry::AppRegistry;
