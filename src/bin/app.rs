@@ -3,12 +3,35 @@ use anyhow::{Error, Result};
 use api::route::{book::build_book_routers, health::build_health_check_routes};
 use axum::Router;
 use registry::AppRegistry;
+use shared::env::{Environment, which};
 use std::net::SocketAddr;
 use tokio::net::TcpListener;
+use tracing_subscriber::{EnvFilter, layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    init_logger()?;
     bootstrap().await
+}
+
+fn init_logger() -> Result<()> {
+    let log_level = match which() {
+        Environment::Development => "debug",
+        Environment::Production => "info",
+    };
+
+    let env_filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| log_level.into());
+
+    let subsciber = tracing_subscriber::fmt::layer()
+        .with_file(true)
+        .with_line_number(true)
+        .with_target(false);
+
+    tracing_subscriber::registry()
+        .with(subsciber)
+        .with(env_filter)
+        .try_init()?;
+    Ok(())
 }
 
 async fn bootstrap() -> Result<()> {
