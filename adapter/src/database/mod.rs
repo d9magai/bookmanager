@@ -1,3 +1,4 @@
+use dotenvy::dotenv;
 use sea_orm::Database;
 pub mod model;
 use sea_orm::DatabaseConnection;
@@ -15,7 +16,7 @@ impl ConnectionPool {
 }
 
 pub async fn connect_database_with() -> ConnectionPool {
-    dotenv::dotenv().ok();
+    dotenv().ok();
     let database_url = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     let db = Database::connect(&database_url)
         .await

@@ -9,8 +9,8 @@ kernel.workspace = true
 derive-new.workspace = true
 sea-orm.workspace = true
 tokio.workspace = true
-anyhow = "1.0.98"
-dotenv = "0.15.0"
+anyhow.workspace = true
+dotenvy.workspace = true
 sqlx = { version = "0.8.5", features = ["runtime-tokio", "uuid", "chrono", "macros", "migrate", "postgres"] }
 uuid = { version = "1.7.0", features = ["v4"] }
 migration = { path = "../migration" }

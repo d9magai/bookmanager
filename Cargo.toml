@@ -25,7 +25,6 @@ shared = { path = "shared" }
 kernel = { path = "kernel" }
 anyhow = "1.0.98"
 axum = { version = "0.8.4", features = ["macros"] }
-dotenv = "0.15.0"
 hyper = { version = "1.6.0", features = ["full"] }
 serde_json = "1.0.140"
 sqlx = { version = "0.8.5", features = ["runtime-tokio", "uuid", "chrono", "macros", "migrate", "postgres"] }
@@ -36,6 +35,7 @@ uuid = { version = "1.17.0", features = ["v4", "serde"] }
 serde = { version = "1.0.219", features = ["derive"] }
 thiserror = "2.0.12"
 sea-orm = { version = "1.1.0", features = ["sqlx-sqlite", "runtime-tokio-rustls", "sqlx-postgres", "macros"] }
+dotenvy = "0.15.7"
 
 [dependencies]
 adapter.workspace = true
@@ -44,7 +44,6 @@ registry.workspace = true
 shared.workspace = true
 anyhow.workspace = true
 axum.workspace = true
-dotenv.workspace = true
 hyper.workspace = true
 serde_json.workspace = true
 sqlx.workspace = true
@@ -54,3 +53,4 @@ uuid = { version = "1.17.0", features = ["v4", "serde"] }
 serde = { version = "1.0.219", features = ["derive"] }
 thiserror = "2.0.12"
 sea-orm.workspace = true
+dotenvy.workspace = true
